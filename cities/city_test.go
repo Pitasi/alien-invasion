@@ -159,3 +159,31 @@ func TestAvailableDirection_All(t *testing.T) {
 	assert.Contains(directions, EAST)
 	assert.Contains(directions, WEST)
 }
+
+func Test_Destroy(t *testing.T) {
+	assert := assert.New(t)
+
+	london, _ := NewCity("London")
+	c, _ := NewCity("Test")
+	Connect(c, london, NORTH)
+
+	Destroy(c)
+
+	assert.Empty(c.AvailableDirections())
+	assert.Nil(london.Visit(SOUTH))
+}
+
+func Test_Destroy_NoNeighbors(t *testing.T) {
+	assert := assert.New(t)
+
+	c, _ := NewCity("Test")
+
+	Destroy(c)
+
+	assert.Empty(c.AvailableDirections())
+}
+
+func Test_Destroy_Nil(t *testing.T) {
+	assert := assert.New(t)
+	assert.NotPanics(func() { Destroy(nil) })
+}

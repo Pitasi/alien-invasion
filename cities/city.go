@@ -73,3 +73,18 @@ func Connect(c1, c2 *City, d Direction) error {
 	c1.neighbors[d] = c2
 	return nil
 }
+
+func Destroy(c *City) {
+	if c == nil {
+		return
+	}
+
+	for dir, n := range c.neighbors {
+		if n == nil {
+			continue
+		}
+
+		n.neighbors[Opposite(dir)] = nil
+		c.neighbors[dir] = nil
+	}
+}
