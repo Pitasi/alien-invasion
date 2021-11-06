@@ -53,3 +53,23 @@ func (c *City) AvailableDirections() []Direction {
 	}
 	return directions
 }
+
+var (
+	errDirectionOccupied = errors.New("direction is already occupied")
+	errConnectToItself   = errors.New("can't connect a city with itself")
+)
+
+// Connect connects two cities with a road in the given direction from c1 to c2.
+// A city can be connected to only one other city in each direction.
+func Connect(c1, c2 *City, d Direction) error {
+	if c1 == c2 {
+		return errConnectToItself
+	}
+
+	if c1.neighbors[d] != nil {
+		return errDirectionOccupied
+	}
+
+	c1.neighbors[d] = c2
+	return nil
+}
