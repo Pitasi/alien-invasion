@@ -1,3 +1,6 @@
+![build status](https://github.com/Pitasi/alien-invasion/actions/workflows/go.yml/badge.svg)
+![lint status](https://github.com/Pitasi/alien-invasion/actions/workflows/lint.yml/badge.svg)
+
 # Alien invasion
 
 Simulating an alien invasion of planet X.
